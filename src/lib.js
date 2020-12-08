@@ -1,12 +1,29 @@
 const fs = require('fs');
 
-const data2Array = data => data.split('\n');
-
 const getData = ({ path, cb }) => {
     fs.readFile(path, 'utf8', (err, data) => {
         if (err) throw err;
-        let array = data2Array(data);
+        let array = data.split('\n');
         array.length -= 1;
+        if (!cb) {
+            console.log(array);
+        } else {
+            cb(array);
+        }
+    });
+};
+
+const getData2 = ({ path, cb }) => {
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) throw err;
+        let array = data.split('\n').reduce((res, txt) => {
+            if (txt) {
+                res[res.length - 1] += ` ${txt}`;
+            } else {
+                res.push('');
+            }
+            return res;
+        }, ['']).filter(txt => txt !== '');
         if (!cb) {
             console.log(array);
         } else {
@@ -17,4 +34,5 @@ const getData = ({ path, cb }) => {
 
 module.exports = {
     getData,
+    getData2,
 };
