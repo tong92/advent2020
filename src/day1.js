@@ -30,7 +30,6 @@ const ans2 = array => {
 	let c = array.length - 1;
 	let total = array[a] + array[b] + array[c];
 	while(total !== 2020) {
-		console.log(array[b], array[c], b, c, total)
 		if (total < 2020) {
 			total += -array[b] + array[b += 1];
 		} else {
