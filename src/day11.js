@@ -1,6 +1,5 @@
 const { getData } = require('./lib');
 const path = './day11.txt';
-// const path = './day11sample.txt';
 
 const seatCheck = (pre, now ,next, idx) => {
 	let seats = pre[idx - 1] || '.';
