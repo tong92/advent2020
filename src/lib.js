@@ -13,12 +13,12 @@ const getData = ({ path, cb }) => {
     });
 };
 
-const getData2 = ({ path, cb }) => {
+const getData2 = ({ path, cb, separator = ' ' }) => {
     fs.readFile(path, 'utf8', (err, data) => {
         if (err) throw err;
         let array = data.split('\n').reduce((res, txt) => {
             if (txt) {
-                res[res.length - 1] += ` ${txt}`;
+                res[res.length - 1] += `${separator}${txt}`;
             } else {
                 res.push('');
             }
